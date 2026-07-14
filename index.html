@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Интерактивный конструктор цветника — подберите идеальные растения для вашего сада за 5 шагов">
+  <title>Собери идеальный цветник — конструктор сада</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/flower-garden.css">
+</head>
+<body>
+  <div class="app" id="app">
+    <header class="app-header">
+      <div class="header-inner">
+        <div class="brand">
+          <svg class="brand-icon" viewBox="0 0 32 32" aria-hidden="true">
+            <path d="M16 4c-1 4-4 7-8 8 4 1 7 4 8 8 1-4 4-7 8-8-4-1-7-4-8-8z" fill="currentColor" opacity=".3"/>
+            <path d="M16 10v14M10 20h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="16" cy="8" r="2" fill="currentColor"/>
+          </svg>
+          <div>
+            <span class="brand-label">Конструктор сада</span>
+            <h1 class="brand-title">Собери идеальный цветник</h1>
+          </div>
+        </div>
+        <div class="progress-wrap" aria-label="Прогресс">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <span class="progress-text" id="progressText">Шаг 1 из 6</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <!-- Шаг 0: Приветствие -->
+      <section class="step active" data-step="0" id="step0">
+        <div class="step-content intro">
+          <div class="intro-visual" aria-hidden="true">
+            <div class="intro-garden">
+              <div class="garden-layer back"></div>
+              <div class="garden-layer mid"></div>
+              <div class="garden-layer front"></div>
+            </div>
+          </div>
+          <div class="intro-text">
+            <h2>Ваш сад — ваши правила</h2>
+            <p>Ответьте на несколько вопросов об условиях участка, и мы подберём гармоничный цветник с учётом инсоляции, грунта и цветовой гаммы. При желании добавим деревья и кустарники.</p>
+            <ul class="intro-features">
+              <li>Персональный подбор растений</li>
+              <li>Схема посадки и уход</li>
+              <li>Готово к печати и публикации</li>
+            </ul>
+            <button class="btn btn-primary btn-lg" data-action="next">Начать подбор</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Шаг 1: Инсоляция -->
+      <section class="step" data-step="1" id="step1">
+        <div class="step-content">
+          <div class="step-header">
+            <span class="step-badge">Условия сада</span>
+            <h2>Какое освещение на участке?</h2>
+            <p>Выберите тип инсоляции — от этого зависит, какие растения будут чувствовать себя комфортно.</p>
+          </div>
+          <div class="cards-grid" data-field="insolation" data-required="true">
+            <button class="choice-card" data-value="sun">
+              <span class="card-icon sun-icon"></span>
+              <span class="card-title">Полное солнце</span>
+              <span class="card-desc">6+ часов прямого солнца в день</span>
+            </button>
+            <button class="choice-card" data-value="partial">
+              <span class="card-icon partial-icon"></span>
+              <span class="card-title">Полутень</span>
+              <span class="card-desc">3–6 часов солнца, рассеянный свет</span>
+            </button>
+            <button class="choice-card" data-value="shade">
+              <span class="card-icon shade-icon"></span>
+              <span class="card-title">Тень</span>
+              <span class="card-desc">Менее 3 часов солнца, глубокая тень</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Шаг 2: Грунт -->
+      <section class="step" data-step="2" id="step2">
+        <div class="step-content">
+          <div class="step-header">
+            <span class="step-badge">Условия сада</span>
+            <h2>Какой у вас грунт?</h2>
+            <p>Тип почвы влияет на дренаж, питание и зимостойкость растений.</p>
+          </div>
+          <div class="cards-grid cards-grid--2" data-field="soil" data-required="true">
+            <button class="choice-card" data-value="fertile">
+              <span class="card-icon soil-fertile"></span>
+              <span class="card-title">Плодородный</span>
+              <span class="card-desc">Чернозём, садовая земля, богатый перегноем</span>
+            </button>
+            <button class="choice-card" data-value="sandy">
+              <span class="card-icon soil-sandy"></span>
+              <span class="card-title">Песчаный</span>
+              <span class="card-desc">Лёгкий, быстро просыхает, нужен полив</span>
+            </button>
+            <button class="choice-card" data-value="clay">
+              <span class="card-icon soil-clay"></span>
+              <span class="card-title">Глинистый</span>
+              <span class="card-desc">Тяжёлый, держит влагу, плохо дренируется</span>
+            </button>
+            <button class="choice-card" data-value="acidic">
+              <span class="card-icon soil-acidic"></span>
+              <span class="card-title">Кислый</span>
+              <span class="card-desc">Под хвойные и вересковые, pH ниже 6</span>
+            </button>
+            <button class="choice-card" data-value="alkaline">
+              <span class="card-icon soil-alkaline"></span>
+              <span class="card-title">Щелочной</span>
+              <span class="card-desc">Известковый, pH выше 7, для лаванды и гипсофилы</span>
+            </button>
+            <button class="choice-card" data-value="moist">
+              <span class="card-icon soil-moist"></span>
+              <span class="card-title">Влажный</span>
+              <span class="card-desc">Низина, близко к грунтовым водам</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Шаг 3: Местоположение -->
+      <section class="step" data-step="3" id="step3">
+        <div class="step-content">
+          <div class="step-header">
+            <span class="step-badge">Условия сада</span>
+            <h2>Где расположен цветник?</h2>
+            <p>Место посадки определяет высоту растений, защиту от ветра и соседство.</p>
+          </div>
+          <div class="cards-grid cards-grid--2" data-field="location" data-required="true">
+            <button class="choice-card" data-value="open">
+              <span class="card-icon loc-open"></span>
+              <span class="card-title">Открытая лужайка</span>
+              <span class="card-desc">Свободное пространство, обзор со всех сторон</span>
+            </button>
+            <button class="choice-card" data-value="fence">
+              <span class="card-icon loc-fence"></span>
+              <span class="card-title">У забора</span>
+              <span class="card-desc">Фоновая посадка, защита от ветра</span>
+            </button>
+            <button class="choice-card" data-value="path">
+              <span class="card-icon loc-path"></span>
+              <span class="card-title">Вдоль дорожки</span>
+              <span class="card-desc">Бордюрная клумба, низкорослые растения</span>
+            </button>
+            <button class="choice-card" data-value="house">
+              <span class="card-icon loc-house"></span>
+              <span class="card-title">У дома</span>
+              <span class="card-desc">Фасадная клумба, акцент у входа</span>
+            </button>
+            <button class="choice-card" data-value="pond">
+              <span class="card-icon loc-pond"></span>
+              <span class="card-title">У водоёма</span>
+              <span class="card-desc">Влаголюбивые, отражение в воде</span>
+            </button>
+            <button class="choice-card" data-value="slope">
+              <span class="card-icon loc-slope"></span>
+              <span class="card-title">На склоне</span>
+              <span class="card-desc">Укрепление откоса, каскадная посадка</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Шаг 4: Цветовая гамма -->
+      <section class="step" data-step="4" id="step4">
+        <div class="step-content">
+          <div class="step-header">
+            <span class="step-badge">Стиль</span>
+            <h2>Какая цветовая гамма вам ближе?</h2>
+            <p>Выберите палитру — мы подберём растения в гармоничных оттенках.</p>
+          </div>
+          <div class="cards-grid cards-grid--2" data-field="palette" data-required="true">
+            <button class="choice-card palette-card" data-value="pastel">
+              <span class="palette-swatch" style="--c1:#f5d5e0;--c2:#d4e8d1;--c3:#e8dff5"></span>
+              <span class="card-title">Пастельная</span>
+              <span class="card-desc">Нежные розовые, лавандовые, мятные тона</span>
+            </button>
+            <button class="choice-card palette-card" data-value="vivid">
+              <span class="palette-swatch" style="--c1:#e63946;--c2:#ffd60a;--c3:#2a9d8f"></span>
+              <span class="card-title">Яркая</span>
+              <span class="card-desc">Контрастные, насыщенные, праздничные</span>
+            </button>
+            <button class="choice-card palette-card" data-value="warm">
+              <span class="palette-swatch" style="--c1:#e76f51;--c2:#f4a261;--c3:#e9c46a"></span>
+              <span class="card-title">Тёплая</span>
+              <span class="card-desc">Оранжевые, золотистые, терракотовые</span>
+            </button>
+            <button class="choice-card palette-card" data-value="cool">
+              <span class="palette-swatch" style="--c1:#4a6fa5;--c2:#6b9ac4;--c3:#a8dadc"></span>
+              <span class="card-title">Холодная</span>
+              <span class="card-desc">Синие, фиолетовые, серебристые</span>
+            </button>
+            <button class="choice-card palette-card" data-value="mono">
+              <span class="palette-swatch" style="--c1:#ffffff;--c2:#e8e4df;--c3:#b5a99a"></span>
+              <span class="card-title">Монохром</span>
+              <span class="card-desc">Белые, кремовые, зелёные — элегантно</span>
+            </button>
+            <button class="choice-card palette-card" data-value="natural">
+              <span class="palette-swatch" style="--c1:#7a9e6a;--c2:#c4a77d;--c3:#8b6f47"></span>
+              <span class="card-title">Природная</span>
+              <span class="card-desc">Луговые, дикорастущие, естественные</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Шаг 5: Деревья и кустарники -->
+      <section class="step" data-step="5" id="step5">
+        <div class="step-content">
+          <div class="step-header">
+            <span class="step-badge">Дополнительно</span>
+            <h2>Добавить деревья и кустарники?</h2>
+            <p>Можно дополнить цветник вертикальными акцентами — это необязательный шаг.</p>
+          </div>
+          <div class="cards-grid" data-field="woody" data-required="true">
+            <button class="choice-card" data-value="no">
+              <span class="card-icon woody-no"></span>
+              <span class="card-title">Только цветник</span>
+              <span class="card-desc">Многолетники, однолетники и злаки</span>
+            </button>
+            <button class="choice-card" data-value="shrubs">
+              <span class="card-icon woody-shrubs"></span>
+              <span class="card-title">Кустарники</span>
+              <span class="card-desc">Фоновые и акцентные кусты 0,5–2 м</span>
+            </button>
+            <button class="choice-card" data-value="trees">
+              <span class="card-icon woody-trees"></span>
+              <span class="card-title">Деревья</span>
+              <span class="card-desc">Маленькие деревья и колоновидные формы</span>
+            </button>
+            <button class="choice-card" data-value="both">
+              <span class="card-icon woody-both"></span>
+              <span class="card-title">Кустарники и деревья</span>
+              <span class="card-desc">Полноценная многоярусная композиция</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Шаг 6: Результат -->
+      <section class="step" data-step="6" id="step6">
+        <div class="step-content result-content">
+          <div class="result-header">
+            <span class="step-badge result-badge">Ваш цветник готов</span>
+            <h2 id="resultTitle">Идеальный цветник для вашего сада</h2>
+            <p id="resultSubtitle"></p>
+          </div>
+
+          <div class="result-layout">
+            <div class="result-visual-panel">
+              <div class="viz-header">
+                <h3>Визуализация цветника</h3>
+                <div class="viz-tabs" id="vizTabs" role="tablist" aria-label="Варианты визуализации"></div>
+              </div>
+              <div class="result-visual" id="resultVisual" aria-label="Схема цветника"></div>
+              <div class="viz-inspiration" id="resultInspiration" aria-label="Примеры цветников"></div>
+            </div>
+            <div class="result-details">
+              <div class="result-summary" id="resultSummary"></div>
+              <div class="result-plants" id="resultPlants"></div>
+              <div class="result-care" id="resultCare"></div>
+            </div>
+          </div>
+
+          <div class="result-gallery-section" id="resultGallery"></div>
+
+          <div class="result-actions">
+            <button class="btn btn-primary" id="btnShare">Поделиться</button>
+            <button class="btn btn-outline" id="btnPrint">Распечатать</button>
+            <button class="btn btn-ghost" data-action="restart">Собрать заново</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer" id="appFooter">
+      <button class="btn btn-ghost" data-action="back" id="btnBack" disabled>Назад</button>
+      <button class="btn btn-primary" data-action="next" id="btnNext">Далее</button>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/photos.js"></script>
+  <script src="js/flower-garden.js"></script>
+</body>
+</html>
